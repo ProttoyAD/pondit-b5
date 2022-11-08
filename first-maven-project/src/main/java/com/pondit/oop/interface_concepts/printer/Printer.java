@@ -1,4 +1,4 @@
-package com.pondit.oop.interface_concepts;
+package com.pondit.oop.interface_concepts.printer;
 
 public interface Printer {
 
