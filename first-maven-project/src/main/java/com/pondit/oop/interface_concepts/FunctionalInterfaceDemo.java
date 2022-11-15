@@ -1,6 +1,14 @@
 package com.pondit.oop.interface_concepts;
 
 public class FunctionalInterfaceDemo {
+
+    InterfaceB b1 = new InterfaceB() {
+        @Override
+        public Integer test(Integer i) {
+            return i + 10;
+        }
+    };
+
     public static void main(String[] args) {
 
 
@@ -27,6 +35,12 @@ public class FunctionalInterfaceDemo {
             }
         };
 
+        System.out.println(new InterfaceB() {
+            @Override
+            public Integer test(Integer i) {
+                return i + 10;
+            }
+        }.test(10));
 //        InterfaceB b2 = (Integer b) -> b + 30;
 
         a1.method1((Integer b) -> b + 30);
@@ -37,7 +51,6 @@ public class FunctionalInterfaceDemo {
 //        System.err.println(b2.test("Hello world"));
     }
 }
-
 
 interface InterfaceA {
     void method1(InterfaceB b);
