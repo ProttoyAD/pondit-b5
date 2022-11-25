@@ -1,8 +1,10 @@
 package com.pondit.collection_frameworks;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class CommonMethodsOfCollectionInterface {
 
@@ -18,7 +20,12 @@ public class CommonMethodsOfCollectionInterface {
             System.out.println(itr.next());
         }
 
-        // Example of forEach method to iterate over the collection
+        // Example of for-each loop
+        for (String item: items) {
+            System.out.println(item);
+        }
+
+        // Example of forEach method to iterate over the collection (implementation#1)
         items.forEach(new Consumer<String>() {
             @Override
             public void accept(String s) {
@@ -26,7 +33,15 @@ public class CommonMethodsOfCollectionInterface {
             }
         });
 
-        // Example of forEach method in one line
+        // Shorter form of implementation#1 (implementation#2)
+        items.forEach((s) -> {
+            System.out.println(s);
+        });
+
+        // Shorter form of implementation#2 (implementation#3)
+        items.forEach(s -> System.out.println(s));
+
+        // Shorter form of implementation#3 (implementation#4)
         items.forEach(System.out::println);
     }
 }
