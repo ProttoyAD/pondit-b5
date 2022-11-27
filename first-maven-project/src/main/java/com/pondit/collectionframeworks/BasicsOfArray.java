@@ -1,8 +1,4 @@
-package com.pondit.collection_frameworks;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
+package com.pondit.collectionframeworks;
 
 public class BasicsOfArray {
 
