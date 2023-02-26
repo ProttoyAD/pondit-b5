@@ -26,6 +26,19 @@
             margin-top: 0px;
             margin-left: 30%;
         } */
+
+        .error-message {
+            color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
     </style>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -80,24 +93,24 @@
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name</label>
                     <input name="firstName" type="text" class="form-control" id="firstName">
-                    <span class="error-message"></span>
+                    <span class="error-message hidden">First name is empty</span>
                 </div>
 
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last Name</label>
                     <input name="lastName" type="text" class="form-control" id="lastName">
-                    <span class="error-message"></span>
+                    <span class="error-message hidden">Last name is empty</span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Email address</label>
                     <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                    <span class="error-message"></span>
+                    <span class="error-message hidden">Email is empty</span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
                     <input name="password" type="password" class="form-control" id="password">
-                    <span class="error-message"></span>
+                    <span class="error-message hidden">Password is empty</span>
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -161,12 +174,33 @@
     $(document).ready(function(){
         let baseUrl = 'http://localhost:8080';
 
-        $.get(`${baseUrl}/hello`, function(resp) {
-            console.log(resp)
-        })
+        // $.get(`${baseUrl}/hello`, function(resp) {
+        //     console.log(resp)
+        // })
 
         $('.form-submit').on('click', (e)=> {
             e.preventDefault();
+
+            let valid = true;
+
+            let elFirstName = $('#firstName');
+            let elLastName = $('#lastName');
+            let elEmail = $('#email');
+            let elPassword = $('#password');
+
+            if(elFirstName.val() === '') {
+                let elFNameErrorMsg = elFirstName.closest(".mb-3").find(".error-message");
+                if (elFNameErrorMsg.hasClass("hidden")) {
+                    elFNameErrorMsg.removeClass('hidden').addClass('visible');
+                    valid = false;
+                } else {
+                    elFNameErrorMsg.toggle("hidden");
+                }
+            }
+
+            if (!valid) {
+                return;
+            }
 
             let user = getFormData($(".form"));
             console.log(baseUrl, user)
