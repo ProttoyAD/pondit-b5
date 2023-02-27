@@ -188,14 +188,16 @@
             let elEmail = $('#email');
             let elPassword = $('#password');
 
+            let elFNameErrorMsg = elFirstName.closest(".mb-3").find(".error-message");
             if(elFirstName.val() === '') {
-                let elFNameErrorMsg = elFirstName.closest(".mb-3").find(".error-message");
                 if (elFNameErrorMsg.hasClass("hidden")) {
                     elFNameErrorMsg.removeClass('hidden').addClass('visible');
                     valid = false;
                 } else {
                     elFNameErrorMsg.toggle("hidden");
                 }
+            } else {
+                elFNameErrorMsg.toggle("hidden");
             }
 
             if (!valid) {
