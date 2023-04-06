@@ -1,0 +1,7 @@
+FROM corretto:20
+
+ENV PATH=$PATH:./home/jdk20/bin
+
+COPY ./labforward-backend-1.0.0.jar /home/labforward.jar
+
+CMD ["./java", "-jar", "/home/labforward.jar"]

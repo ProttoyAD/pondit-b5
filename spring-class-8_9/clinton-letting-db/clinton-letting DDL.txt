@@ -1,0 +1,142 @@
+create table client
+(
+    client_id   integer      not null
+        primary key,
+    client_name varchar(255) not null
+);
+
+alter table client
+    owner to postgres;
+
+create table address
+(
+    address_id     integer      not null
+        primary key,
+    address_number varchar(255) not null,
+    address_line   varchar(255) not null
+);
+
+alter table address
+    owner to postgres;
+
+create table property
+(
+    property_id  integer      not null
+        primary key,
+    address_id   integer      not null,
+    proprty_type varchar(255) not null
+);
+
+alter table property
+    owner to postgres;
+
+create table property_type
+(
+    property_type_id integer      not null
+        primary key,
+    property_type    varchar(255) not null
+);
+
+alter table property_type
+    owner to postgres;
+
+create table portfolio
+(
+    portfolio_id integer not null
+        primary key,
+    client_id    integer not null,
+    property_id  integer not null
+);
+
+alter table portfolio
+    owner to postgres;
+
+create table tenant
+(
+    tenant_id      integer      not null
+        primary key,
+    tenant_name    varchar(255) not null,
+    tenant_type_id integer      not null
+);
+
+alter table tenant
+    owner to postgres;
+
+create table tenant_type
+(
+    tenant_type_id integer      not null
+        primary key,
+    tenant_type    varchar(255) not null
+);
+
+alter table tenant_type
+    owner to postgres;
+
+create table tenancy
+(
+    tenancy_id   integer      not null
+        primary key,
+    tenant_id    integer      not null,
+    property_id  integer      not null,
+    start_date   varchar(255) not null,
+    end_date     varchar(255) not null,
+    monthly_rent integer      not null
+);
+
+alter table tenancy
+    owner to postgres;
+
+create table part
+(
+    part_id   integer      not null
+        primary key,
+    part_code varchar(255) not null,
+    part_name varchar(255) not null
+);
+
+alter table part
+    owner to postgres;
+
+create table staff
+(
+    staff_id   integer      not null
+        primary key,
+    staff_name varchar(255) not null
+);
+
+alter table staff
+    owner to postgres;
+
+create table repair
+(
+    repair_id      integer      not null
+        primary key,
+    repair_details varchar(255) not null,
+    property_id    integer      not null
+);
+
+alter table repair
+    owner to postgres;
+
+create table part_used
+(
+    part_used_id integer not null
+        primary key,
+    repair_id    integer not null,
+    part_id      integer not null,
+    quantity     integer not null
+);
+
+alter table part_used
+    owner to postgres;
+
+create table repair_staff
+(
+    repair_staff_id integer not null
+        primary key,
+    repair_id       integer not null,
+    staff_id        integer not null
+);
+
+alter table repair_staff
+    owner to postgres;
