@@ -1,12 +1,13 @@
-package com.pondit.model;
+package com.pondit.model.entities;
 
+import com.pondit.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
 @Builder
-@Entity(name = "USER")
+@Entity
 @Table(name = "TBL_USER")
 @AllArgsConstructor
 public class User {
@@ -19,6 +20,9 @@ public class User {
     private String email;
     @Column
     private String password;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     public User() {}
 }
