@@ -1,4 +1,4 @@
-package com.pondit;
+package com.pondit.servlets;
 
 import com.pondit.model.entities.User;
 import com.pondit.model.enums.UserRole;
@@ -37,10 +37,10 @@ public class HelloServlet extends HttpServlet {
                 req.getRequestDispatcher("hello.jsp").forward(req, resp);
             } else {
                 req.setAttribute("error", "Unable to save: User already exists in DB");
-                req.getRequestDispatcher("error.jsp").forward(req, resp);
+                req.getRequestDispatcher("pages/error.jsp").forward(req, resp);
             }
         } else {
-            req.getRequestDispatcher("hello.jsp").forward(req, resp);
+            req.getRequestDispatcher("pages/hello.jsp").forward(req, resp);
         }
     }
 }
