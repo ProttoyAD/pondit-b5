@@ -5,10 +5,10 @@
     <persistence-unit name="default">
         <class>com.pondit.model.entities.User</class>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5533/user_management_db"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://192.168.238.5:5533/user_management_db"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>
             <property name="jakarta.persistence.jdbc.password" value="postgres"/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="" value=""/>
         </properties>
