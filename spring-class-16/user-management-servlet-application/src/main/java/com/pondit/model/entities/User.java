@@ -4,6 +4,8 @@ import com.pondit.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Builder
@@ -11,7 +13,7 @@ import lombok.*;
 @Entity
 @Table(name = "TBL_USER")
 @AllArgsConstructor
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue
     private Long id;

@@ -3,7 +3,9 @@ package com.pondit.servlets;
 import com.pondit.configurations.PasswordHashGenerator;
 import com.pondit.model.entities.User;
 import com.pondit.model.enums.UserRole;
+import com.pondit.services.UserService;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -11,11 +13,16 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.Arrays;
 
+@Named
 @WebServlet(name = "RegistrationServlet", value = "/register")
 public class RegistrationServlet extends HttpServlet {
 
     @Inject
     private PasswordHashGenerator passwordHashGenerator;
+
+    @Inject
+    private UserService userService;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("pages/registration/registration.jsp").forward(request, response);
@@ -35,7 +42,9 @@ public class RegistrationServlet extends HttpServlet {
             throw new RuntimeException("Passwords did not match!");
         }
 
-        System.out.println(user);
+        var savedUserId = userService.save(user);
+
+        System.out.println(savedUserId);
 
         request.getRequestDispatcher("pages/registration/registration-success.jsp").forward(request, response);
     }

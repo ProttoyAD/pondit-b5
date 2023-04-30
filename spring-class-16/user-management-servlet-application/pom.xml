@@ -87,6 +87,13 @@
             <artifactId>jandex</artifactId>
             <version>3.0.5</version>
         </dependency>
+        <!-- We will need the following dependency for scanning @Entity annotated classes -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.12</version>
+        </dependency>
+
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
