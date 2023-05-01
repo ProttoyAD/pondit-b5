@@ -6,6 +6,8 @@ import com.pondit.model.enums.UserRole;
 import com.pondit.services.UserService;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -46,6 +48,11 @@ public class RegistrationServlet extends HttpServlet {
 
         System.out.println(savedUserId);
 
-        request.getRequestDispatcher("pages/registration/registration-success.jsp").forward(request, response);
+        JsonObject json = Json.createObjectBuilder()
+                        .add("message", "User created successfully")
+                                .build();
+        response.setContentType("application/json");
+        var out = response.getWriter();
+        out.print(json.toString());
     }
 }

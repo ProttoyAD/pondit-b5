@@ -24,7 +24,7 @@
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
+                                <div class="alert registration-success"  style="display: none" role="alert"></div>
                                 <form class="mx-1 mx-md-4 form">
 
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -101,7 +101,6 @@
             e.preventDefault();
             let user = getFormData($(".form"));
 
-            debugger
             console.log(baseUrl, user)
 
             // With JQuery Ajax
@@ -112,6 +111,10 @@
                 headers: {'Content-type': 'application/x-www-form-urlencoded'},
                 success: function(resp) {
                     console.log(resp)
+                    $(".alert.registration-success")
+                        .addClass("alert-success")
+                        .css("display", "block")
+                        .text(resp.message);
                 }
             })
         });
