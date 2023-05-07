@@ -31,6 +31,5 @@ public class AuthenticationFilter implements Filter {
                 httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
             }
         }
-        httpResp.sendError(HttpServletResponse.SC_FORBIDDEN);
     }
 }
