@@ -4,11 +4,9 @@ import com.pondit.model.entities.User;
 import com.pondit.model.enums.UserRole;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
