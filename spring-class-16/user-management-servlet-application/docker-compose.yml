@@ -11,3 +11,12 @@ services:
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_DB=user_management_db'
+  user_management_webapp:
+    depends_on:
+      - user_management_db
+    image: user-management-servlet-app:latest
+    container_name: user_management_webapp
+    volumes:
+      - ./data:/data
+    ports:
+      - 80:8080
