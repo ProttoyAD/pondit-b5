@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  spring_mvc_hibernate:
+    image: mysql
+    container_name: spring_mvc_hibernate
+    volumes:
+      - ./data:/data
+    ports:
+      - '3306:3306'
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=@root#'
+      - 'MYSQL_DATABASE=spring_mvc_hibernate'
+    extra_hosts:
+      - 'spring_mvc_hibernate:192.168.238.2'
