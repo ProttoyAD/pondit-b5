@@ -27,7 +27,8 @@ public class MysqlConfig {
         sessionFactor.setDataSource(dataSource());
         sessionFactor.setPackagesToScan("org.spring.entity");
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        hibernateProperties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://192.168.238.2:3306/spring_mvc_hibernate");
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         hibernateProperties.put("hibernate.show_sql", "true");
         hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.put("hibernate.connection.autocommit", false);

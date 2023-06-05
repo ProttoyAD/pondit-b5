@@ -125,18 +125,24 @@
             <version>2.0.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+
         <!-- Spring Security Config -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>6.1.0</version>
+            <version>6.0.0</version>
         </dependency>
 
         <!-- Spring Security Web -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>6.1.0</version>
+            <version>6.0.0</version>
         </dependency>
 
     </dependencies>
