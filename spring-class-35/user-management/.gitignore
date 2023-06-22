@@ -1,0 +1,9 @@
+target
+.idea
+user-management-app/node_modules/
+user-management-app/node/
+user-management-app/dist/
+user-management-app/.angular/
+user-management-app/package-lock.json
+user-management-app/.vscode
+
