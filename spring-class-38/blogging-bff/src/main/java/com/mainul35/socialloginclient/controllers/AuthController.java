@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/")
 public class AuthController {
 
     @GetMapping("/login")
@@ -22,8 +22,6 @@ public class AuthController {
     @GetMapping("/logout")
     public String logout (Model model) {
         SecurityContextHolder.clearContext();
-        return "redirect:/auth/login?action=logout";
+        return "redirect:/login?action=logout";
     }
-
-
 }

@@ -26,8 +26,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
                     authorizationManagerRequestMatcherRegistry
                             .requestMatchers(
-                                    "/",
-                                    "/auth/**",
+                                    "/login",
                                     "/login-processing",
                                     "/lib/bootstrap/**",
                                     "/css/**",
@@ -55,20 +54,20 @@ public class SecurityConfig {
                             .successHandler(authSuccessHandler);
                 })
                 .formLogin(form -> {
-                    form.loginPage("/auth/login")
+                    form.loginPage("/login")
                             .loginProcessingUrl("/login-processing")
                             .usernameParameter("username")
                             .passwordParameter("password")
                             .successHandler(authSuccessHandler)
-                            .failureUrl("/auth/login");
+                            .failureUrl("/login");
                 })
 //                .oauth2Login(httpSecurityOAuth2LoginConfigurer -> {
 //                    httpSecurityOAuth2LoginConfigurer.successHandler(authSuccessHandler);
 //                })
                 .logout(logout -> {
                     logout
-                            .logoutUrl("/auth/logout")
-                            .logoutSuccessUrl("/auth/login");
+                            .logoutUrl("/logout")
+                            .logoutSuccessUrl("/login");
                 })
                 .build();
     }

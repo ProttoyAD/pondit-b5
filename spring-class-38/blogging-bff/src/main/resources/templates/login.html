@@ -8,11 +8,13 @@
 <div class="sidenav">
     <div class="login-main-text">
         <h2>Application<br> Login Page</h2>
-        <p>Login or register from here to access.</p>
+        <p>Login from here to access.</p>
     </div>
 </div>
 <div class="main">
-    <div class="alert alert-primary" role="alert" th:text="${actionMessage}"></div>
+    <th:block th:if="${actionMessage != null}">
+        <div class="alert alert-primary" role="alert" th:text="${actionMessage}"></div>
+    </th:block>
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
             <form>
@@ -24,20 +26,24 @@
                     <label>Password</label>
                     <input type="password" class="form-control" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-black">Login</button>
-                <button type="submit" class="btn btn-secondary">Register</button>
+                <div class="form-group" style="margin-top: 3px">
+                    <button type="submit" class="btn btn-black">Login</button>
+                    <button type="submit" class="btn btn-secondary">Register</button>
+                </div>
             </form>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/google" role="link" style="text-transform: none;">
+                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/google" role="link" style="text-transform: none; border: 1px solid black;">
                     <img width="20" style="margin-right: 5px;" alt="Sign in with Google" th:src="@{/images/google-logo.png}" />
                     Sign in with Google
                 </a>
             </div>
+            <br>
+            <br>
             <div class="col-md-12">
-                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/github" role="link" style="text-transform: none;">
+                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/github" role="link" style="text-transform: none; border: 1px solid black;">
                     <img width="20" style="margin-right: 5px;" alt="Sign in with Google" th:src="@{/images/github_logo.png}" />
                     Sign in with GitHub
                 </a>
