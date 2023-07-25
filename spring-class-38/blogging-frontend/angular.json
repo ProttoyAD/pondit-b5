@@ -28,12 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/assets/adminlte/commons/css/fonts.googleapis.css",
+              "src/assets/adminlte/plugins/fontawesome/css/all.min.css",
+              "src/assets/adminlte/commons/css/adminlte.min.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.js"
+              "src/assets/adminlte/commons/js/jquery.min.js",
+              "src/assets/adminlte/commons/js/bootstrap.bundle.min.js",
+              "src/assets/adminlte/commons/js/adminlte.min.js"
             ]
           },
           "configurations": {
