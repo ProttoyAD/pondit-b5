@@ -11,8 +11,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContentWrapperComponent } from './components/content-wrapper/content-wrapper.component';
 import { ContentComponent } from './components/content/content.component';
 import { ContentHeaderComponent } from './components/content-header/content-header.component';
-import { StoryCardComponent } from './components/story-card/story-card.component';
-import { StoriesComponent } from './components/stories/stories.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +21,6 @@ import { StoriesComponent } from './components/stories/stories.component';
     ContentWrapperComponent,
     ContentComponent,
     ContentHeaderComponent,
-    StoryCardComponent,
-    StoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +30,8 @@ import { StoriesComponent } from './components/stories/stories.component';
   ],
   providers: [
     HttpClientModule
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

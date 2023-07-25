@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
           this.router.navigateByUrl(location.pathname)
         }
       })
-      this.router.navigateByUrl('/secured')
+      this.router.navigateByUrl('/stories')
     }
   }
 }
