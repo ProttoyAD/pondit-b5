@@ -1,6 +1,9 @@
-<body  class="hold-transition layout-top-nav">
+<body *ngIf="access_token"  class="hold-transition layout-top-nav">
 <div class="wrapper grayed-background">
   <app-navbar></app-navbar>
   <app-content-wrapper></app-content-wrapper>
 </div>
 </body>
+<div *ngIf="!access_token">
+  <app-login></app-login>
+</div>

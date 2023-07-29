@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ContentWrapperComponent } from './components/content-wrapper/content-wrapper.component';
 import { ContentComponent } from './components/content/content.component';
 import { ContentHeaderComponent } from './components/content-header/content-header.component';
+import {HighlightService} from "./services/HighlightService";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ContentHeaderComponent } from './components/content-header/content-head
     HttpClientModule
   ],
   providers: [
-    HttpClientModule
+    HttpClientModule,
+    HighlightService
   ],
   exports: [
   ],

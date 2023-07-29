@@ -31,12 +31,14 @@
               "src/assets/adminlte/commons/css/fonts.googleapis.css",
               "src/assets/adminlte/plugins/fontawesome/css/all.min.css",
               "src/assets/adminlte/commons/css/adminlte.min.css",
+              "src/assets/adminlte/plugins/summernote/summernote.css",
               "src/styles.scss"
             ],
             "scripts": [
               "src/assets/adminlte/commons/js/jquery.min.js",
               "src/assets/adminlte/commons/js/bootstrap.bundle.min.js",
-              "src/assets/adminlte/commons/js/adminlte.min.js"
+              "src/assets/adminlte/commons/js/adminlte.min.js",
+              "src/assets/adminlte/plugins/summernote/summernote.js"
             ]
           },
           "configurations": {

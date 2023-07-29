@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {environment} from "../environments/environment";
 import {AppConstants} from "./AppConstants";
-import {routes} from "./app-routing.module";
 
 @Component({
   selector: 'app-root',
@@ -38,12 +37,9 @@ export class AppComponent implements OnInit {
         localStorage.setItem('image_url', params.get('image_url'));
       }
 
-      routes.forEach(route => {
-        if (location.pathname !== '/' && route.path !== '**' && location.pathname.search(route.path)) {
-          this.router.navigateByUrl(location.pathname)
-        }
-      })
-      this.router.navigateByUrl('/stories')
+      if (location.pathname === '/') {
+        this.router.navigateByUrl('/stories')
+      }
     }
   }
 }
