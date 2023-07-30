@@ -5,6 +5,7 @@ import {StoriesContainerComponent} from './stories-container.component';
 import {StoryCardComponent} from "./components/story-card/story-card.component";
 import {RouterModule} from "@angular/router";
 import { NewStoryComponent } from './components/new-story/new-story.component';
+import {InsertCodeModalComponent} from "./insert-code-modal/insert-code-modal.component";
 
 export const routes = [
   {path: '', component: StoriesContainerComponent},
@@ -16,11 +17,12 @@ export const routes = [
     StoriesContainerComponent,
     StoriesComponent,
     StoryCardComponent,
-    NewStoryComponent
+    NewStoryComponent,
+    InsertCodeModalComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
   ]
 })
 export class StoriesModule { }

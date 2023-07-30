@@ -15,7 +15,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    debugger
     // @ts-ignore
     this.allowedPaths.forEach(path => {
       if (request.url.includes(path)) {

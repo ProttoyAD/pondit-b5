@@ -26,6 +26,7 @@ export class StoryCardComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
+    this.highlightService.highlightAll();
   }
 
   ngAfterViewChecked(): void {

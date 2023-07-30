@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    debugger
     location.href = `${environment.BASE_URL}login`
   }
 
