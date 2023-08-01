@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {InsertCodeModel} from "../../model/insert-code.model";
 
 @Component({
   selector: 'app-new-story',
@@ -9,6 +10,8 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
 
   articleContent ?: string
   tempFiles ?: string[] = [];
+
+  summernote?: any
 
   constructor() { }
 
@@ -22,13 +25,18 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
       // @ts-ignore
       let ui = $.summernote.ui;
 
+      function publishArticle(summernote1: any) {
+        console.log(summernote1)
+      }
+
       // create button
       let button = ui.button({
         contents: 'Publish Article&nbsp;&nbsp;<i class="fa fa-paper-plane"></i>',
         tooltip: 'Publish Article',
         click: function () {
           // invoke insertText method with 'hello' on editor module.
-          context.invoke('editor.insertText', 'hello');
+          // @ts-ignore
+          publishArticle($('.summernote').summernote('code'))
         }
       });
 
@@ -54,7 +62,7 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
     }
 
     // @ts-ignore
-    let summernote = $('.summernote').summernote( {
+    this.summernote = $('.summernote').summernote( {
       // @ts-ignore
       height: $(window).height() * 0.7,
       toolbar: [
@@ -87,35 +95,45 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
           // @ts-ignore
           $('.summernote').summernote ("insertImage", url);
         },
+        onToolbarClick: function(e: any) {
+          // Get the clicked button's data-value attribute
+          // @ts-ignore
+          var buttonValue = $(e.target).data('value');
+
+          // Prevent the default behavior for the "Code" button
+          if (buttonValue === 'code') {
+            e.preventDefault();
+          }
+        }
       }
     })
 
 
 
-    let currentContext = summernote.closest('app-new-story')
+    let currentContext = this.summernote.closest('app-new-story')
     let imgBtn = currentContext.find('[aria-label=pre]')
       .on("click", function(evt: any) {
+        evt.preventDefault();
         let codeEditor = currentContext.find('.code-editor-modal');
         codeEditor.modal('show')
-        // @ts-ignore
-        $('.select2bs4').select2({
-          theme: 'bootstrap4'
-        });
-        codeEditor.find('.save-code').on('click', function () {
-          let textArea = codeEditor.find('textarea');
-          let content =`<pre><code class="language-java">${textArea.val()}<code><pre>` ;
-          let existingContent = summernote.summernote('code'); // Get the existing content
-
-          // Combine the existing content with the new content
-          let combinedContent = existingContent + content;
-
-          // Set the combined content back to Summernote
-          summernote.summernote('code', combinedContent);
-        })
     })
 
     // @ts-ignore
 
   }
 
+  triggerCodeInsert($event: InsertCodeModel) {
+    let content =`<pre><code class="language-${$event.codeLanguage}">${$event.codeContent}</code></pre>` ;
+    let existingContent = this.summernote.summernote('code'); // Get the existing content
+    // @ts-ignore
+    let $content = $(existingContent);
+    // Combine the existing content with the new content
+    let lastElement = $content[$content.length - 1];
+    // @ts-ignore
+    if (lastElement.localName === `pre` && !$(lastElement).text()) {
+      // @ts-ignore
+      $($content[$content.length - 1]).html(`<code class="language-${$event.codeLanguage}">${$event.codeContent}</code>`)
+      this.summernote.summernote('code', $content);
+    }
+  }
 }
