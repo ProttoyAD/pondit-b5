@@ -1,5 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {InsertCodeModel} from "../../model/insert-code.model";
+import {ArticleModel} from "../../model/article.model";
+import {PublishArticleService} from "../../../../services/publish-article.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-new-story',
@@ -8,25 +11,50 @@ import {InsertCodeModel} from "../../model/insert-code.model";
 })
 export class NewStoryComponent implements OnInit, AfterViewInit{
 
-  articleContent ?: string
   tempFiles ?: string[] = [];
 
-  summernote?: any
+  summernote ?: any
 
-  constructor() { }
+  constructor(
+    private publishArticleService: PublishArticleService
+    , private domSanitizer: DomSanitizer
+  ) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
+    let $this = this;
+    // @ts-ignore
+    let insertCode = function (context) {
+      // @ts-ignore
+      let ui = $.summernote.ui;
+      // create button
+      let button = ui.button({
+        contents: '<b>{..}</b>',
+        tooltip: 'Insert Code',
+        click: function () {
+          // invoke insertText method with 'hello' on editor module.
+          // @ts-ignore
+          let currentContext = $('.summernote').closest('app-new-story')
+          let codeEditor = currentContext.find('.code-editor-modal');
+          codeEditor.modal('show')
+        }
+      });
+      return button.render();
+    }
 
     // @ts-ignore
     let publishButton = function (context) {
       // @ts-ignore
       let ui = $.summernote.ui;
 
-      function publishArticle(summernote1: any) {
-        console.log(summernote1)
+      function publishArticle(summernote1: string) {
+        let article = new ArticleModel();
+        article.content = summernote1;
+        article.published = true;
+        console.log(article);
+        $this.publishArticleService.saveArticle(article);
       }
 
       // create button
@@ -65,6 +93,7 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
     this.summernote = $('.summernote').summernote( {
       // @ts-ignore
       height: $(window).height() * 0.7,
+      lang: 'en-US',
       toolbar: [
         ['style'],
         ['textstyle', ['bold', 'italic', 'underline', 'clear']],
@@ -75,10 +104,12 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
         ['height', ['height']],
         ['insert', ['picture', 'link', 'table', 'hr']],
         ['misc', ['fullscreen', 'codeview', 'undo', 'redo']],
+        ['Insert Code', ['insertCode']],
         ['Publish this Article', ['publishButton']],
         ['Save as Deaft', ['saveAsDraft']],
       ],
       buttons: {
+        insertCode: insertCode,
         publishButton: publishButton,
         saveAsDraft: saveAsDraft
       },
@@ -95,27 +126,7 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
           // @ts-ignore
           $('.summernote').summernote ("insertImage", url);
         },
-        onToolbarClick: function(e: any) {
-          // Get the clicked button's data-value attribute
-          // @ts-ignore
-          var buttonValue = $(e.target).data('value');
-
-          // Prevent the default behavior for the "Code" button
-          if (buttonValue === 'code') {
-            e.preventDefault();
-          }
-        }
       }
-    })
-
-
-
-    let currentContext = this.summernote.closest('app-new-story')
-    let imgBtn = currentContext.find('[aria-label=pre]')
-      .on("click", function(evt: any) {
-        evt.preventDefault();
-        let codeEditor = currentContext.find('.code-editor-modal');
-        codeEditor.modal('show')
     })
 
     // @ts-ignore
@@ -123,17 +134,13 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
   }
 
   triggerCodeInsert($event: InsertCodeModel) {
-    let content =`<pre><code class="language-${$event.codeLanguage}">${$event.codeContent}</code></pre>` ;
+    let content = `
+    <pre><code class='language-${$event.codeLanguage}'>${$event.codeContent}</code></pre><br>
+    ` ;
     let existingContent = this.summernote.summernote('code'); // Get the existing content
+
     // @ts-ignore
-    let $content = $(existingContent);
-    // Combine the existing content with the new content
-    let lastElement = $content[$content.length - 1];
-    // @ts-ignore
-    if (lastElement.localName === `pre` && !$(lastElement).text()) {
-      // @ts-ignore
-      $($content[$content.length - 1]).html(`<code class="language-${$event.codeLanguage}">${$event.codeContent}</code>`)
-      this.summernote.summernote('code', $content);
-    }
+      this.summernote.summernote('code', existingContent + content);
+      this.summernote.summernote('font', 'Arial')
   }
 }

@@ -1,9 +1,5 @@
 <div class="row">
-  <div class="col-lg-12">
-    <app-story-card></app-story-card>
-    <app-story-card></app-story-card>
-    <app-story-card></app-story-card>
-    <app-story-card></app-story-card>
-    <app-story-card></app-story-card>
+  <div class="col-lg-12" *ngFor="let article of articles">
+    <app-story-card [article]="article"></app-story-card>
   </div>
 </div>

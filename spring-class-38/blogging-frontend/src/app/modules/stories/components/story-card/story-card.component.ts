@@ -1,6 +1,7 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {HighlightService} from "../../../../services/HighlightService";
+import {ArticleModel} from "../../model/article.model";
 
 @Component({
   selector: 'app-story-card',
@@ -10,6 +11,7 @@ import {HighlightService} from "../../../../services/HighlightService";
 export class StoryCardComponent implements OnInit, AfterViewChecked {
   // javaCode ?: SafeHtml;
   javaCode ?: string;
+  @Input() article ?: ArticleModel;
   constructor(private highlightService: HighlightService) {
     this.javaCode =
       `

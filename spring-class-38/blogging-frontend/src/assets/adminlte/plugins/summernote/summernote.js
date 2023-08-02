@@ -91,7 +91,6 @@
                     style: "Style",
                     p: "Normal",
                     blockquote: "Quote",
-                    pre: "Code",
                     h1: "Header 1",
                     h2: "Header 2",
                     h3: "Header 3",
