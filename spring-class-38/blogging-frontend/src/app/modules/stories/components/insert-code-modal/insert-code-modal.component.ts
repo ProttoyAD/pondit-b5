@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {InsertCodeModel} from "../model/insert-code.model";
+import {InsertCodeModel} from "../../model/insert-code.model";
 
 @Component({
   selector: 'app-insert-code-modal',
