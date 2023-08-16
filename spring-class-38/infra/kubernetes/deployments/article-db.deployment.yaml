@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: article-db
-          image: postgresql:latest
+          image: postgres:latest
           resources:
             requests:
               memory: "64Mi"
