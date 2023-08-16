@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: article-db-deployment
+  labels:
+    app-name: article-db
+    type: deployment
+spec:
+  template:
+    metadata:
+      namespace: dev
+      name: article-db-pod
+      labels:
+        app-name: article-db
+        type: pod
+      spec:
+        containers:
+          - name: article-db
+            image: postgresql:latest
+            env:
+              - name: POSTGRES_DB
+                value: yourdbname
+              - name: POSTGRES_USER
+                value: yourdbuser
+              - name: POSTGRES_PASSWORD
+                value: yourdbpassword
+            ports:
+              - containerPort: 5432  # PostgreSQL default port
+            volumeMounts:
+              - name: article-db-data
+                mountPath: /var/lib/postgresql/data
+            volumes:
+              - name: article-db-data
+                persistentVolumeClaim:
+                  claimName: article-db-pvc  # Create a PVC for persistent storage
+  selector:
+    matchLabels:
+      app-name: article-db
+      type: pod
+  replicas: 2
