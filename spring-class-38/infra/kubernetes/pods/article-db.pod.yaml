@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: dev
+  name: article-db-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: dev
+  name: article-db-pod
+  labels:
+    app-name: article-db
+    type: pod
+spec:
+  containers:
+    - name: article-db
+      image: postgresql:latest
+      env:
+        - name: ARTICLE_DB
+          value: article-db
+        - name: ARTICLE_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: blogging-app-secret
+              key: article-bd-username
+        - name: ARTICLE_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: article-db-password
+              name: blogging-app-secret
+      ports:
+        - containerPort: 5432  # PostgreSQL default port
+      volumeMounts:
+        - name: article-db-data
+          mountPath: /var/lib/postgresql/data
+  volumes:
+    - name: article-db-data
+      persistentVolumeClaim:
+        claimName: article-db-pvc  # Create a PVC for persistent storage
