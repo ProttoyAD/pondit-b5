@@ -1,6 +1,12 @@
+# Defining dev namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
 # Defining Resource quota to use within the namespace dev
 apiVersion: v1
-kind: Resource
+kind: ResourceQuota
 metadata:
   name: dev-quota
   namespace: dev # namespace is used to define for which namespace we are defining this quota
@@ -11,9 +17,3 @@ spec:
     requests.memory: 2Gi
     limits.cpu: "10"
     limits.memory: 10Gi
----
-# Defining dev namespace
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: dev
