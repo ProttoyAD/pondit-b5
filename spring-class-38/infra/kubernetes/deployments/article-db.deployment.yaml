@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: article-db
-          image: postgres:latest
+          image: postgres
           resources:
             requests:
               memory: "64Mi"
@@ -38,14 +38,14 @@ spec:
               memory: "512Mi"
               cpu: "1"
           env:
-            - name: ARTICLE_DB
+            - name: POSTGRES_DB
               value: article-db
-            - name: ARTICLE_DB_USER
+            - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   name: blogging-app-secret
                   key: article-bd-username
-            - name: ARTICLE_DB_PASSWORD
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: article-db-password
