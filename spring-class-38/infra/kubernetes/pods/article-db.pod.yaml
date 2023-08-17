@@ -21,14 +21,14 @@ metadata:
 spec:
   containers:
     - name: article-db
-      image: postgres:latest
-      resources:
-        requests:
-          memory: "64Mi"
-          cpu: "250m"
-        limits:
-          memory: "512Mi"
-          cpu: "1"
+      image: postgres
+#      resources:
+#        requests:
+#          memory: "64Mi"
+#          cpu: "250m"
+#        limits:
+#          memory: "512Mi"
+#          cpu: "1"
       env:
         - name: ARTICLE_DB
           value: article-db
