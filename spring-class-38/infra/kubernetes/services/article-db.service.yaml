@@ -9,7 +9,7 @@ spec:
     type: pod  # Service communicates to the POD directly
   ports:
     - protocol: TCP
-      port: 32222
+      port: 3222
       targetPort: 5432
       nodePort: 32222
-  type: LoadBalancer   # Change to NodePort or LoadBalancer if needed
+  type: NodePort   # Change to NodePort or LoadBalancer if needed
