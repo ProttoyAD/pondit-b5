@@ -27,7 +27,10 @@ spec:
               cpu: "1"
           env:
             - name: POSTGRES_DB
-              value: article-db
+              valueFrom:
+                configMapKeyRef:
+                  key: database_name
+                  name: article-db-configmap
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
