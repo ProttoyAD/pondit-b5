@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: psql_db_pvc
+  name: psql-db-pvc
 spec:
   accessModes:
     - ReadWriteMany
@@ -12,13 +12,20 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: psql_db
+  name: psql-db
   labels:
-    db_name: article_db
+    db_name: article-db
 spec:
   containers:
-    - name: psql_container
+    - name: psql-container
       image: postgres:latest
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "1"
       ports:
         - containerPort: 5432
       env:
@@ -30,8 +37,8 @@ spec:
           value: secret
       volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: psql_db_volume
+          name: psql-db-volume
   volumes:
-    - name: psql_db_volume
+    - name: psql-db-volume
       persistentVolumeClaim:
-        claimName: psql_db_pvc
+        claimName: psql-db-pvc
