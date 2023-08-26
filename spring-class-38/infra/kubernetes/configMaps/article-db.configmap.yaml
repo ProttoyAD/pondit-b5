@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: dev
+  name: article-db-configmap
+data:
+  database_name: 'article-db'
