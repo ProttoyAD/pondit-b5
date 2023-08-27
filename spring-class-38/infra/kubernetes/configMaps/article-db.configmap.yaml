@@ -4,4 +4,4 @@ metadata:
   namespace: dev
   name: article-db-configmap
 data:
-  database_name: 'article-db'
+  database_name: 'article_db'
