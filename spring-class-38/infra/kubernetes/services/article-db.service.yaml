@@ -11,5 +11,5 @@ spec:
     - protocol: TCP
       port: 3222
       targetPort: 5432
-      nodePort: 32222
-  type: LoadBalancer   # Change to NodePort or LoadBalancer if needed
+#      nodePort: 32222
+  type: ClusterIP   # Change to NodePort or LoadBalancer if needed
