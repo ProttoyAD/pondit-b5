@@ -1,8 +1,8 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: cheap
-  namespace: dev
+  name: blogging-app-ipool
+  namespace: metallb-system
 spec:
   addresses:
   - 192.168.238.10-192.168.238.20
