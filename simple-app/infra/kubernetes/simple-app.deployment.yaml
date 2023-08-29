@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: simple-app
-          image: simple-app:latest
+          image: mainul35/simple-app:latest
           ports:
             - containerPort: 8080
   selector:
