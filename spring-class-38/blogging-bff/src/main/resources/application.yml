@@ -72,3 +72,6 @@ spring:
 #      resource-server:
 #        jwt:
 #          issuer-uri: http://localhost:8080
+
+articles:
+  base-uri: http://localhost:8090
