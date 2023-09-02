@@ -1,3 +1,92 @@
+# Defining dev namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
+# Defining Resource quota to use within the namespace dev
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-quota
+  namespace: dev # namespace is used to define for which namespace we are defining this quota
+spec:
+  hard:
+    pods: "100"
+    requests.cpu: "2"
+    requests.memory: 2Gi
+    limits.cpu: "10"
+    limits.memory: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: dev
+  name: article-db-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 512Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: article-db-deployment
+  labels:
+    app-name: article-db
+    type: deployment
+spec:
+  template:
+    metadata:
+      namespace: dev
+      name: article-db-pod
+      labels:
+        app-name: article-db
+        type: pod
+    spec:
+      containers:
+        - name: article-db
+          image: postgres
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "1"
+          env:
+            - name: POSTGRES_DB
+              value: article_db
+            #            - name: POSTGRES_HOST_AUTH_METHOD
+            #              value: trust
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: blogging-app-secret
+                  key: article-bd-username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: article-db-password
+                  name: blogging-app-secret
+          ports:
+            - containerPort: 5432  # PostgreSQL default port
+          volumeMounts:
+            - name: article-db-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: article-db-data
+          persistentVolumeClaim:
+            claimName: article-db-pvc  # Create a PVC for persistent storage
+  selector:
+    matchLabels:
+      app-name: article-db
+      type: pod
+  replicas: 2
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,4 +101,4 @@ spec:
       port: 3222
       targetPort: 5432
       nodePort: 32222
-  type: LoadBalancer   # Change to NodePort or LoadBalancer if needed
+  type: NodePort   # Change to NodePort or LoadBalancer if needed
