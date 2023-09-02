@@ -19,6 +19,24 @@ spec:
     limits.memory: 10Gi
 ---
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: dev
+  name: article-db-configmap
+data:
+  database_name: 'article_db'
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  namespace: dev
+  name: blogging-app-secret
+type: Opaque
+data:
+  article-bd-username: cG9zdGdyZXMK
+  article-db-password: c2VjcmV0Cg==
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   namespace: dev
