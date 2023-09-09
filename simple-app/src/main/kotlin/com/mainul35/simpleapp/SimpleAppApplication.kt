@@ -23,4 +23,9 @@ class SimpleController {
 	fun sayHello (): ResponseEntity<String> {
 		return ResponseEntity.ok("Hello from the other side!")
 	}
+
+	@GetMapping("/hello-syed")
+	fun sayHelloSyed (): ResponseEntity<String> {
+		return ResponseEntity.ok("Hello Syed!");
+	}
 }
