@@ -30,7 +30,7 @@ kind: Secret
 apiVersion: v1
 metadata:
   namespace: dev
-  name: blogging-app-secret
+  name: article-db-secret
 type: Opaque
 data:
   article-bd-username: cG9zdGdyZXMK
@@ -49,7 +49,7 @@ spec:
       storage: 512Mi
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   namespace: dev
   name: article-db-deployment
@@ -83,13 +83,13 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: blogging-app-secret
+                  name: article-db-secret
                   key: article-bd-username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: article-db-password
-                  name: blogging-app-secret
+                  name: article-db-secret
           ports:
             - containerPort: 5432  # PostgreSQL default port
           volumeMounts:
