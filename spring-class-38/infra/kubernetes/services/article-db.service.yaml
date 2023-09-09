@@ -104,6 +104,7 @@ spec:
       app-name: article-db
       type: pod
   replicas: 2
+  serviceName: article-db-service
 ---
 apiVersion: v1
 kind: Service
