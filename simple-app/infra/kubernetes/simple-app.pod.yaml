@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-app-pod
+  labels:
+    pod-name: simple-app-pod
+spec:
+  containers:
+    - name: simple-app
+      image: mainul35/simple-app:1.1
+      ports:
+        - containerPort: 8080
