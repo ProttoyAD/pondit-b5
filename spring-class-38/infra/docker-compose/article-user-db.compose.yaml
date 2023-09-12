@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  article_db:
+  article_user_db:
     image: 'postgres'
     container_name: 'article_user_db'
     volumes:
