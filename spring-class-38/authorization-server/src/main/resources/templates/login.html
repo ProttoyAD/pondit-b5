@@ -35,7 +35,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/google" role="link" style="text-transform: none; border: 1px solid black;">
+                <a class="btn btn-light btn-block bg-white" th:href="@{/oauth2/authorization/google(applicationCalling=${applicationCalling})}" role="link" style="text-transform: none; border: 1px solid black;">
                     <img width="20" style="margin-right: 5px;" alt="Sign in with Google" th:src="@{/images/google-logo.png}" />
                     Sign in with Google
                 </a>
@@ -43,7 +43,7 @@
             <br>
             <br>
             <div class="col-md-12">
-                <a class="btn btn-light btn-block bg-white" href="/oauth2/authorization/github" role="link" style="text-transform: none; border: 1px solid black;">
+                <a class="btn btn-light btn-block bg-white" th:href="@{/oauth2/authorization/github(applicationCalling=${applicationCalling})}" role="link" style="text-transform: none; border: 1px solid black;">
                     <img width="20" style="margin-right: 5px;" alt="Sign in with Google" th:src="@{/images/github_logo.png}" />
                     Sign in with GitHub
                 </a>

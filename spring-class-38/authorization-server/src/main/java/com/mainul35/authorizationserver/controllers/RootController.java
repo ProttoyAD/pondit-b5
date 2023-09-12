@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RootController {
 
     @GetMapping("/login")
-    public String login (Model model, @RequestParam(value = "action", required = false) String action) {
+    public String login (Model model,
+                         @RequestParam(value = "action", required = false) String action,
+                         @RequestParam(value = "applicationCalling", required = false) String applicationCalling
+    ) {
         if (action != null) {
             model.addAttribute("actionMessage", "You have been logged out!");
         }
+        model.addAttribute("applicationCalling", "bloggingApp");
         return "login";
     }
 
