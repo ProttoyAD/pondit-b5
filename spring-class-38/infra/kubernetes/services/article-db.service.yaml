@@ -112,6 +112,7 @@ metadata:
   name: article-db-service
   namespace: dev
 spec:
+  clusterIP: None
   selector:
     app-name: article-db
     type: pod  # Service communicates to the POD directly
@@ -119,5 +120,5 @@ spec:
     - protocol: TCP
       port: 3222
       targetPort: 5432
-      nodePort: 32222
-  type: NodePort   # Change to NodePort or LoadBalancer if needed
+#      nodePort: 32222
+#  type: NodePort   # Change to NodePort or LoadBalancer if needed
