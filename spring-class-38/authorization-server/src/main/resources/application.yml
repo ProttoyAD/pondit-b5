@@ -1,4 +1,13 @@
 spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://article-user-db.mainul35dev.duckdns.org:32221/article_user_db?sslmode=disable
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
