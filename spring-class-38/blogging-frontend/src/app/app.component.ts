@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     // @ts-ignore
     this.access_token = params.get(AppConstants.ACCESS_TOKEN)  ? params.get(AppConstants.ACCESS_TOKEN) : localStorage.getItem(AppConstants.ACCESS_TOKEN);
     if (!this.access_token) {
-      location.href = environment.BASE_URL + 'login';
+      location.href = environment.AUTH_URL + 'login';
     } else {
       // @ts-ignore
       localStorage.setItem(AppConstants.ACCESS_TOKEN, this.access_token);

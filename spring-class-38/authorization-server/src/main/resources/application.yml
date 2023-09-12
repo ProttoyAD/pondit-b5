@@ -1,4 +1,7 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
   security:
     user:
 
@@ -9,20 +12,26 @@ spring:
       password: "{noop}secret"
       roles: USER
 
-    # Oauth2 client registration starts from here
-
     oauth2:
+      # Oauth2 client registration starts from here
+      client:
+        registration:
+          google:
+            client-id: "615531537634-806j95c1s18uundif9nl4oggcag7lcm6.apps.googleusercontent.com"
+            client-secret: "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"
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - https://www.googleapis.com/auth/userinfo.email
+              - https://www.googleapis.com/auth/userinfo.profile
+              - openid
+
+          github:
+            client-id: 04469a8b0400d262e3d7
+            client-secret: 66584a7e848b20fbbde772aa9a83ee1b5b4a07f8
+
+      # Oauth2 Authorization server registration starts from here
       authorization-server:
         client:
-          client-1:
-            registration:
-              client-id: client
-              client-secret: "{noop}secret"
-              authorization-grant-types: client_credentials
-              client-authentication-methods:
-                - client_secret_basic
-                - client_secret_post
-
           # We have defined only one client: oidc-client
           # This client information was also mentioned
           # in the above URL: client_id=oidc-client
@@ -80,3 +89,5 @@ logging:
     org:
       springframework:
         security: trace
+server:
+  port: 9000

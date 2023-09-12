@@ -39,7 +39,7 @@
 
     <modules>
         <module>blogging-frontend</module>
-<!--        <module>authorization-server</module>-->
+        <module>authorization-server</module>
         <module>article-service</module>
         <module>blogging-bff</module>
     </modules>

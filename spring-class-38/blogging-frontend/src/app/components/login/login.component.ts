@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    location.href = `${environment.BASE_URL}login`
+    location.href = `${environment.AUTH_URL}login`
   }
 
 }

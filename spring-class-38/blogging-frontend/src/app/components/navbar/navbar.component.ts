@@ -22,6 +22,6 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     localStorage.removeItem(AppConstants.ACCESS_TOKEN)
-    location.href = `${environment.BASE_URL}logout`
+    location.href = `${environment.AUTH_URL}logout`
   }
 }
