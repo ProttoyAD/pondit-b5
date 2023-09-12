@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  article_db:
+    image: 'postgres'
+    container_name: 'article_user_db'
+    volumes:
+      - type: volume
+        source: article_user_bs_volume
+        target: "$PWD/Documents/docker_data/article_user_bs_data"
+    ports:
+      - '32222:5432'
+    environment:
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_DB=article_user_db'
+    networks:
+      - article_app_netwok
+    extra_hosts:
+      - 'article_app_netwok:192.168.238.5'
+volumes:
+  article_user_bs_volume:
+networks:
+  article_app_netwok:
