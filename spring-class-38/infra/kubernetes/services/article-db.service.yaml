@@ -111,7 +111,7 @@ spec:
             - name: article-db-data
               mountPath: /var/lib/postgresql/data
             - name: postgres-config
-              mountPath: /etc/postgresql/12/main/pg_hba.conf
+              mountPath: /var/lib/postgresql/data/pg_hba.conf
               subPath: pg_hba.conf
       volumes:
         - name: postgres-config
