@@ -94,10 +94,11 @@ spec:
             - name: POSTGRES_DB
               value: article_db
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: article-db-secret
-                  key: article-db-username
+              value: root
+#              valueFrom:
+#                secretKeyRef:
+#                  name: article-db-secret
+#                  key: article-db-username
             - name: POSTGRES_HOST_AUTH_METHOD
               value: "trust"
           ports:
