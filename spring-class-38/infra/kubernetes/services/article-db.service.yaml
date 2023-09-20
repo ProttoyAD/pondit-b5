@@ -25,21 +25,21 @@ metadata:
   name: article-db-configmap
 data:
   database_name: 'article_db'
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: dev
-  name: postgres-config
-data:
-  pg_hba.conf: |
-    # Custom PostgreSQL HBA (Host-Based Authentication) Configuration
-
-    # Allow all connections with the "trust" method
-    # This configuration is not recommended for production environments
-    # It allows all users from all IP addresses to connect without authentication
-    host    all             all             0.0.0.0/0               trust
-    host    all             all             ::/0                    trust
+#---
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  namespace: dev
+#  name: postgres-config
+#data:
+#  pg_hba.conf: |
+#    # Custom PostgreSQL HBA (Host-Based Authentication) Configuration
+#
+#    # Allow all connections with the "trust" method
+#    # This configuration is not recommended for production environments
+#    # It allows all users from all IP addresses to connect without authentication
+#    host    all             all             0.0.0.0/0               trust
+#    host    all             all             ::/0                    trust
 ---
 kind: Secret
 apiVersion: v1
@@ -100,23 +100,25 @@ spec:
                 secretKeyRef:
                   name: article-db-secret
                   key: article-bd-username
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: article-db-password
-                  name: article-db-secret
+#            - name: POSTGRES_PASSWORD
+#              valueFrom:
+#                secretKeyRef:
+#                  key: article-db-password
+#                  name: article-db-secret
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: "trust"
           ports:
             - containerPort: 5432  # PostgreSQL default port
           volumeMounts:
             - name: article-db-data
               mountPath: /var/lib/postgresql/data
-            - name: postgres-config
-              mountPath: /var/lib/postgresql/data/pg_hba.conf
-              subPath: pg_hba.conf
+#            - name: postgres-config
+#              mountPath: /var/lib/postgresql/data/pg_hba.conf
+#              subPath: pg_hba.conf
       volumes:
-        - name: postgres-config
-          configMap:
-            name: postgres-config
+#        - name: postgres-config
+#          configMap:
+#            name: postgres-config
         - name: article-db-data
           persistentVolumeClaim:
             claimName: article-db-pvc  # Create a PVC for persistent storage
