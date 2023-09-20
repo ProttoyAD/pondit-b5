@@ -95,7 +95,13 @@ spec:
           volumeMounts:
             - name: article-db-data
               mountPath: /var/lib/postgresql/data
+            - name: postgres-config
+              mountPath: /etc/postgresql/12/main/pg_hba.conf
+              subPath: pg_hba.conf
       volumes:
+        - name: postgres-config
+          configMap:
+            name: postgres-config
         - name: article-db-data
           persistentVolumeClaim:
             claimName: article-db-pvc  # Create a PVC for persistent storage
@@ -112,7 +118,7 @@ metadata:
   name: article-db-service
   namespace: dev
 spec:
-  clusterIP: None
+#  clusterIP: None
   selector:
     app-name: article-db
     type: pod  # Service communicates to the POD directly
@@ -120,5 +126,5 @@ spec:
     - protocol: TCP
       port: 3222
       targetPort: 5432
-#      nodePort: 32222
-#  type: NodePort   # Change to NodePort or LoadBalancer if needed
+      nodePort: 32222
+  type: NodePort   # Change to NodePort or LoadBalancer if needed
