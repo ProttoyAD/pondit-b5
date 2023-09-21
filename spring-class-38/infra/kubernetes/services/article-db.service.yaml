@@ -94,7 +94,7 @@ spec:
             - name: POSTGRES_DB
               value: article_db
             - name: POSTGRES_USER
-              value: root
+              value: postgres
 #              valueFrom:
 #                secretKeyRef:
 #                  name: article-db-secret
