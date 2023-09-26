@@ -11,3 +11,7 @@ https://auralinna.blog/post/2017/code-syntax-highlighting-with-angular-and-prism
 5. `kubectl describe pod {pod_name}` -  we can see details of the pod, which image is used, pod name, current state, IP/ports using, replicas etc
 6. `kubectl apply -f pod_manifest_file.yaml` - Create a pod from pod manifest file
 7. `kubectl replace -f pod_manifest_file.yaml` - Replace a running pod after editing the pod; in this case pod manifest file can be stored and found in the /temp/ folder
+8. `kubectl logs <pod_name>` to see the logs inside a running pod
+9. `kubectl exec -it <pod_name> -n <namespace> -- /bin/bash` to get inside the shell of a pod
+
+# Kubernetes 
