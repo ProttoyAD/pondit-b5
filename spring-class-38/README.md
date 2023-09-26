@@ -14,4 +14,13 @@ https://auralinna.blog/post/2017/code-syntax-highlighting-with-angular-and-prism
 8. `kubectl logs <pod_name>` to see the logs inside a running pod
 9. `kubectl exec -it <pod_name> -n <namespace> -- /bin/bash` to get inside the shell of a pod
 
-# Kubernetes 
+# Kubernetes Objects writing format
+Most of the kubernetes objects commonly have the following 4 root level properties:
+```
+apiVersion:
+kind:
+metadata:
+spec:
+```
+Few objects like, namespace, configMap, secret etc may not have them all though. 
+
