@@ -5,7 +5,7 @@ https://auralinna.blog/post/2017/code-syntax-highlighting-with-angular-and-prism
 
 # Kubectl commands
 1. `kubectl get ns` - See all namespaces
-2. `kubectl config get-context` - Find currently active namespace in current profile
+2. `kubectl config get-contexts` - Find currently active namespace in current profile
 3. `kubectl config set-context --current --namespace=<namespace name>` - Set current namespace to the provided namespace name
 4. `kubectl get pods` -  See all pods in current / default namespace
 5. `kubectl run {pod_name} --image={image_name} {...additional params}` - creates a pod with some name, specified image, and additional parameters
