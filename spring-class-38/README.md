@@ -13,7 +13,7 @@ https://auralinna.blog/post/2017/code-syntax-highlighting-with-angular-and-prism
 7. `kubectl delete pod {pod_name}` - deletes a running pod
 8. `kubectl describe pod {pod_name}` -  we can see details of the pod, which image is used, pod name, current state, IP/ports using, replicas etc
 9. `kubectl apply -f <object-manifest-file>.yaml` - Create kubernetes object(s) from manifest file
-10. `kubectl replace -f pod_manifest_file.yaml` - Replace a running pod after editing the pod; in this case pod manifest file can be stored and found in the /temp/ folder
+10. `kubectl replace -f pod_manifest_file.yaml` - Replace a running kubernetes objects after editing the object manifest file; in this case object manifest file can be stored and found in the /temp/ folder
 11. `kubectl logs <pod_name>` to see the logs inside a running pod
 12. `kubectl exec -it <pod_name> -n <namespace> -- /bin/bash` to get inside the shell of a pod
 
