@@ -21,14 +21,9 @@ export class StoryCardComponent implements OnInit, AfterViewChecked {
         }
       }
       `;
-
-    // Use DomSanitizer to bypass Angular's template expression interpretation
-    // this.javaCode = this.sanitizer.bypassSecurityTrustHtml(escapedJavaCode);
-
   }
 
   ngOnInit(): void {
-    this.highlightService.highlightAll();
   }
 
   ngAfterViewChecked(): void {

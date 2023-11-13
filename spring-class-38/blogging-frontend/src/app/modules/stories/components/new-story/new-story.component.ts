@@ -54,6 +54,7 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
         article.content = summernote1;
         article.published = true;
         console.log(article);
+        $this.domSanitizer.bypassSecurityTrustHtml(article.content);
         $this.publishArticleService.saveArticle(article);
       }
 
@@ -135,7 +136,10 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
 
   triggerCodeInsert($event: InsertCodeModel) {
     let content = `
-    <pre><code class='language-${$event.codeLanguage}'>${$event.codeContent}</code></pre><br>
+    <pre style="tab-size: 4">
+        <code class='language-${$event.codeLanguage}'>${$event.codeContent}</code>
+    </pre>
+    <br>
     ` ;
     let existingContent = this.summernote.summernote('code'); // Get the existing content
 
