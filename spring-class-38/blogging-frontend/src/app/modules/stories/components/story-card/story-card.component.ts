@@ -1,5 +1,4 @@
 import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {HighlightService} from "../../../../services/HighlightService";
 import {ArticleModel} from "../../model/article.model";
 

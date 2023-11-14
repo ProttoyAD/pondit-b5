@@ -94,6 +94,7 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
     this.summernote = $('.summernote').summernote( {
       // @ts-ignore
       height: $(window).height() * 0.7,
+      escapeHTML: false,
       lang: 'en-US',
       toolbar: [
         ['style'],
@@ -128,7 +129,8 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
           $('.summernote').summernote ("insertImage", url);
         },
       }
-    })
+    });
+
 
     // @ts-ignore
 
@@ -136,7 +138,7 @@ export class NewStoryComponent implements OnInit, AfterViewInit{
 
   triggerCodeInsert($event: InsertCodeModel) {
     let content = `
-    <pre style="tab-size: 4">
+    <pre style="tab-size: 4; border: 1px grey solid;background-color: #eeeeee;">
         <code class='language-${$event.codeLanguage}'>${$event.codeContent}</code>
     </pre>
     <br>

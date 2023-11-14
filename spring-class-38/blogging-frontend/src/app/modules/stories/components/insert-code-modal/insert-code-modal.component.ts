@@ -37,6 +37,10 @@ export class InsertCodeModalComponent implements OnInit, AfterViewInit {
 
   insertCode() {
     let insertCodeModel = new InsertCodeModel();
+    if (this.selectedLanguage && ["html", "javascript", "typescript"].indexOf(this.selectedLanguage) > -1) {
+      // @ts-ignore
+      this.codeContent = this.codeContent.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+    }
     insertCodeModel.codeContent = this.codeContent
     insertCodeModel.codeLanguage = this.selectedLanguage
     this.insertCodeEvent.emit(insertCodeModel)
