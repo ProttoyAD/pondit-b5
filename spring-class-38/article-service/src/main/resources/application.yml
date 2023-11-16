@@ -9,7 +9,7 @@ spring:
           issuer-uri: http://localhost:9000
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://article-db.mainul35dev.duckdns.org:32222/article_db?sslmode=disable
+    url: jdbc:postgresql://localhost:32222/article_db?sslmode=disable
     username: postgres
     password: postgres
   jpa:
